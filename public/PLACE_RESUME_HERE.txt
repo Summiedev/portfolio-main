@@ -1,0 +1,3 @@
+Place your resume PDF here, named: noorah-resume.pdf
+
+The resume download feature will serve /public/noorah-resume.pdf automatically.
