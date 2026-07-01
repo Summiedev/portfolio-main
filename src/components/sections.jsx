@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
- import { projects } from '../data/projects.js'
+import { projects } from '../data/projects.js'
 import { sendMessage } from '../services/contact.js'
 import { downloadResume } from '../services/resume.js'
 import {
@@ -77,7 +77,7 @@ export function Navbar({ isDark, setIsDark }) {
               Resume <ArrowUpRight />
             </button>
             <a href="#contact" className="btn-accent" onClick={e => { e.preventDefault(); scrollTo('contact') }}>Let's talk</a>
-            <button className="hamburger" onClick={() => setMobileOpen(true)} aria-label="Menu">
+            <button className="hamburger" onClick={() => setMobileOpen(open => !open)} aria-label="Menu">
               <span /><span /><span />
             </button>
           </div>
@@ -103,7 +103,7 @@ export function Hero() {
         <div className="hero-orb hero-orb-2" />
       </div>
       <div className="hero-content">
-        <p className="hero-name">Summie</p>
+        <p className="hero-name">Hi, Summie</p>
         <h1 className="hero-role">
           Software<br /><em>Engineer</em>
         </h1>
@@ -398,16 +398,18 @@ export function Experience() {
   const ArrowSm = () => <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
   const items = [
     {
-      period: 'Jan 2025 – Jun 2025', badge: 'Internship',
-      role: 'Backend Developer Intern', company: 'Belsoft Systems',
-      desc: 'Contributed to the backend development of CashPoint, a fintech platform, implementing RESTful API features, business logic, and secure transaction workflows using Node.js, Express.js, and PostgreSQL. Developed backend modules for BelPower, supporting utility payment and billing services through scalable API integrations, request validation, and database operations.',
+      period: 'Apr 2026 – Jun 2026', badge: 'Internship',
+      role: 'Backend Engineer Intern', company: 'HNG Internship',
+      desc: 'Engineered scalable backend services using FastAPI, leveraging asynchronous programming, dependency injection, and Pydantic for type-safe API development. Contributed to ClinSight by implementing backend features, secure API endpoints, authentication workflows, and optimized data-access layers for healthcare applications.',
       achievements: [
-        'Implemented secure authentication and authorization using JWT, middleware-based access control, and Role-Based Access Control (RBAC).',
-        'Designed, developed, and documented RESTful APIs, applying consistent error handling, request validation, and API versioning best practices.',
-        'Modeled relational databases in PostgreSQL, optimizing schema design, indexing strategies, and SQL queries to improve application performance and data integrity.',
-        'Collaborated using Git-based workflows, participating in feature development, debugging, code reviews, and deployment processes.',
+        'Designed distributed job scheduling systems with DAG-based workflow orchestration, worker execution pipelines, retry mechanisms, exponential backoff, dead-letter queues, and fault-tolerant task processing.',
+        'Developed real-time communication services using Server-Sent Events (SSE) and WebSockets, supporting reliable event streaming, client reconnection, and live system updates.',
+        'Implemented distributed coordination and concurrency control using Redis, including atomic operations, distributed locking, caching strategies, and worker synchronization.',
+        'Built secure authentication and authorization systems using OAuth 2.0, JWT, and RBAC, enforcing API security and access control best practices.',
+        'Optimized PostgreSQL and MongoDB performance through schema design, indexing, query optimization, and transactional consistency.',
+        'Collaborated in Agile development environments using Git-based workflows, code reviews, issue tracking, CI/CD pipelines, and clean architecture principles to deliver production-ready backend services.',
       ],
-      tech: ['Node.js', 'Express.js', 'PostgreSQL', 'JWT'],
+      tech: ['FastAPI', 'Redis', 'WebSockets', 'PostgreSQL'],
     },
     {
       period: 'Sep 2025 – Jan 2026', badge: 'Instructor',
@@ -421,18 +423,16 @@ export function Experience() {
       tech: ['Next.js', 'Node.js', 'Express.js', 'PostgreSQL'],
     },
     {
-      period: 'Apr 2026 – Jun 2026', badge: 'Internship',
-      role: 'Backend Engineer Intern', company: 'HNG Internship',
-      desc: 'Engineered scalable backend services using FastAPI, leveraging asynchronous programming, dependency injection, and Pydantic for type-safe API development. Contributed to ClinSight by implementing backend features, secure API endpoints, authentication workflows, and optimized data-access layers for healthcare applications.',
+      period: 'Jan 2025 – Jun 2025', badge: 'Internship',
+      role: 'Backend Developer Intern', company: 'Belsoft Systems',
+      desc: 'Contributed to the backend development of CashPoint, a fintech platform, implementing RESTful API features, business logic, and secure transaction workflows using Node.js, Express.js, and PostgreSQL. Developed backend modules for BelPower, supporting utility payment and billing services through scalable API integrations, request validation, and database operations.',
       achievements: [
-        'Designed distributed job scheduling systems with DAG-based workflow orchestration, worker execution pipelines, retry mechanisms, exponential backoff, dead-letter queues, and fault-tolerant task processing.',
-        'Developed real-time communication services using Server-Sent Events (SSE) and WebSockets, supporting reliable event streaming, client reconnection, and live system updates.',
-        'Implemented distributed coordination and concurrency control using Redis, including atomic operations, distributed locking, caching strategies, and worker synchronization.',
-        'Built secure authentication and authorization systems using OAuth 2.0, JWT, and RBAC, enforcing API security and access control best practices.',
-        'Optimized PostgreSQL and MongoDB performance through schema design, indexing, query optimization, and transactional consistency.',
-        'Collaborated in Agile development environments using Git-based workflows, code reviews, issue tracking, CI/CD pipelines, and clean architecture principles to deliver production-ready backend services.',
+        'Implemented secure authentication and authorization using JWT, middleware-based access control, and Role-Based Access Control (RBAC).',
+        'Designed, developed, and documented RESTful APIs, applying consistent error handling, request validation, and API versioning best practices.',
+        'Modeled relational databases in PostgreSQL, optimizing schema design, indexing strategies, and SQL queries to improve application performance and data integrity.',
+        'Collaborated using Git-based workflows, participating in feature development, debugging, code reviews, and deployment processes.',
       ],
-      tech: ['FastAPI', 'Redis', 'WebSockets', 'PostgreSQL'],
+      tech: ['Node.js', 'Express.js', 'PostgreSQL', 'JWT'],
     },
   ]
   return (
