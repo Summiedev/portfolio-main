@@ -103,7 +103,7 @@ export function Hero() {
         <div className="hero-orb hero-orb-2" />
       </div>
       <div className="hero-content">
-        <p className="hero-name">Hi, i'mSummie</p>
+        <p className="hero-name">Hi, i'm Summie</p>
         <h1 className="hero-role">
           Software<br /><em>Engineer</em>
         </h1>

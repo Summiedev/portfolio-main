@@ -16,7 +16,7 @@ export const projects = {
     'Containerized deployment strategy suitable for DigitalOcean App Platform and managed PostgreSQL',
   ],
   arch: 'The backend is built with Spring Boot and uses STOMP over WebSocket for low-latency event delivery. Game state is maintained server-side to ensure consistency across concurrent voters, while PostgreSQL stores room data, player sessions, question content, and vote history. The frontend uses React with TypeScript and reactive socket hooks to keep the user interface synchronized with the live game state. The system is designed to be horizontally scalable and deployment-ready for DigitalOcean.',
-    github: 'https://github.com/', 
+    github: 'https://github.com/Summiedev/verdikt', 
   live: 'https://verdikt.app',
   },
   dilamme: {
