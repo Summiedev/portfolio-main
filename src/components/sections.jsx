@@ -103,7 +103,7 @@ export function Hero() {
         <div className="hero-orb hero-orb-2" />
       </div>
       <div className="hero-content">
-        <p className="hero-name">Hi, Summie</p>
+        <p className="hero-name">Hi, i'mSummie</p>
         <h1 className="hero-role">
           Software<br /><em>Engineer</em>
         </h1>
@@ -552,14 +552,14 @@ export function Contact() {
         </div>
 
         <div className="contact-grid">
-          <a href="mailto:noorah@email.com" className="contact-card reveal reveal-delay-1">
+          <a href="mailto:summie777@gmail.com" className="contact-card reveal reveal-delay-1">
             <div className="contact-card-icon"><Mail /></div>
-            <div><div className="contact-card-title">Email</div><div className="contact-card-val">noorah@email.com</div></div>
+            <div><div className="contact-card-title">Email</div><div className="contact-card-val">summie777@gmail.com</div></div>
             <span className="contact-card-arrow"><ArrowRightSm /></span>
           </a>
           <a href="https://github.com/Summiedev" target="_blank" rel="noreferrer" className="contact-card reveal reveal-delay-2">
             <div className="contact-card-icon"><GitHubIcon /></div>
-            <div><div className="contact-card-title">GitHub</div><div className="contact-card-val">@noorah</div></div>
+            <div><div className="contact-card-title">GitHub</div><div className="contact-card-val">@Summiedev</div></div>
             <span className="contact-card-arrow"><ArrowRightSm /></span>
           </a>
           <a href="https://linkedin.com/" target="_blank" rel="noreferrer" className="contact-card reveal reveal-delay-3">

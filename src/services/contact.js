@@ -1,16 +1,5 @@
-/**
- * Contact form submission service.
- *
- * HOW TO USE:
- * 1. Go to https://formspree.io and create a free account.
- * 2. Create a new form — you'll get a form ID like "xpzvwgkb".
- * 3. Replace YOUR_FORMSPREE_ID below with that ID.
- * 4. That's it — messages will arrive in your email inbox.
- *
- * Alternatively, swap sendMessage() for any backend/API you prefer.
- */
 
-const FORMSPREE_ID = 'YOUR_FORMSPREE_ID' // ← replace this
+const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID // ← replace this
 
 export async function sendMessage({ firstName, lastName, email, subject, message }) {
   // Validate before sending

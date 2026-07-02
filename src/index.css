@@ -85,7 +85,7 @@ nav.scrolled{padding:14px 0;background:rgba(10,10,11,0.85);-webkit-backdrop-filt
 @media(max-width:900px){.hamburger{display:flex}}
 .hamburger span{width:22px;height:1.5px;background:var(--text);transition:all 0.3s;display:block}
 
-#hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:140px 0 64px}
+#hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:100px 0 50px}
 .hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .hero-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.22;animation:drift 12s ease-in-out infinite alternate}
 .hero-orb-1{width:560px;height:560px;background:var(--accent);top:-160px;right:-120px;animation-delay:0s}
