@@ -1,7 +1,8 @@
 export const projects = {
   verdikt: {
     gradient: 'cover-gradient-1',
-    ttitle: 'Verdikt',
+    coverImage: '/covers/verdikt-cover.png',
+    title: 'Verdikt',
   summary: 'A real-time multiplayer social polling game built for group sessions — players vote, react, and watch live results update in sync.',
   tags: ['Spring Boot', 'WebSocket', 'React', 'TypeScript', 'PostgreSQL', 'DigitalOcean', 'STOMP', 'Docker'],
   overview: 'Verdikt is a full-stack real-time social game where groups join live sessions, respond to curated relationship and lifestyle questions, and see results update instantly across all clients. The app combines social interaction, real-time synchronization, and session-based gameplay into a polished multiplayer experience.',
@@ -17,7 +18,7 @@ export const projects = {
   ],
   arch: 'The backend is built with Spring Boot and uses STOMP over WebSocket for low-latency event delivery. Game state is maintained server-side to ensure consistency across concurrent voters, while PostgreSQL stores room data, player sessions, question content, and vote history. The frontend uses React with TypeScript and reactive socket hooks to keep the user interface synchronized with the live game state. The system is designed to be horizontally scalable and deployment-ready for DigitalOcean.',
     github: 'https://github.com/Summiedev/verdikt', 
-  live: 'https://verdikt.app',
+  live: 'https://verdikt.online',
   },
   dilamme: {
     gradient: 'cover-gradient-2',

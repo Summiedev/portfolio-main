@@ -208,6 +208,7 @@ export function About() {
 function ProjectCard({ projectKey, project, onClick }) {
   const Icon = projectIcons[projectKey]
   const cardRef = useRef(null)
+  const hasCoverImage = Boolean(project.coverImage)
 
   const onMouseMove = e => {
     const card = cardRef.current
@@ -244,7 +245,11 @@ function ProjectCard({ projectKey, project, onClick }) {
   return (
     <div className="project-card" ref={cardRef} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} onClick={() => onClick(projectKey)}>
       <div className={`project-cover ${project.gradient}`}>
-        <Icon />
+        {hasCoverImage ? (
+          <img className="project-cover-media" src={project.coverImage} alt={`${project.title} cover`} />
+        ) : (
+          <Icon />
+        )}
         <div className="project-cover-overlay" />
         <span className={`project-status ${statusMap[projectKey].cls}`}>{statusMap[projectKey].label}</span>
       </div>
@@ -638,13 +643,18 @@ export function ProjectModal({ projectKey, onClose }) {
 
   if (!project) return null
   const Icon = projectIcons[projectKey]
+  const hasCoverImage = Boolean(project.coverImage)
 
   return (
     <div className="modal-overlay open" onClick={e => { if (e.target === e.currentTarget) onClose() }}>
       <div className="modal">
         <div className={`modal-hero ${project.gradient}`}>
           <button className="modal-close" onClick={onClose}>✕</button>
-          <Icon />
+          {hasCoverImage ? (
+            <img className="modal-hero-media" src={project.coverImage} alt={`${project.title} cover`} />
+          ) : (
+            <Icon />
+          )}
         </div>
         <div className="modal-header">
           <div className="project-tags">
