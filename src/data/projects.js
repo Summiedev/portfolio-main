@@ -46,7 +46,7 @@ memora: {
     github: 'https://github.com/Summiedev/verdikt', 
   live: 'https://verdikt.online',
   },
-  dillammeScheduler: {
+  dilamme: {
   gradient: 'cover-gradient-3',
   coverImage: '/covers/dillamme-scheduler-cover.png',
   title: 'Dilamme Scheduler',
