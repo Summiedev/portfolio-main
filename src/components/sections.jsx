@@ -335,7 +335,7 @@ export function Projects({ onProjectClick }) {
         {Object.entries(projects).map(([key, project]) => (
           <ProjectCard key={key} projectKey={key} project={project} onClick={handleCardClick} />
         ))}
-        <div style={{ flex: '0 0 20px' }} />
+        <div style={{ flex: '0 0 15px' }} />
       </div>
     </section>
   )

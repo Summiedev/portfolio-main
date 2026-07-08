@@ -41,7 +41,7 @@ svg.icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.6;ver
 .display-xl{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,6rem);font-weight:400;line-height:1.04;letter-spacing:-0.015em}
 .display-lg{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4.4rem);font-weight:400;line-height:1.05;letter-spacing:-0.015em}
 .display-md{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:400;line-height:1.15;letter-spacing:-0.01em}
-.label{font-size:0.6875rem;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:var(--accent)}
+.label{font-size:1.7rem;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:var(--accent)}
 .body-lg{font-size:1.0625rem;line-height:1.7;color:var(--text-muted)}
 .body-md{font-size:0.9375rem;line-height:1.7;color:var(--text-muted)}
 
@@ -131,14 +131,14 @@ nav.scrolled{padding:14px 0;background:rgba(10,10,11,0.85);-webkit-backdrop-filt
 .about-card p{font-size:0.8125rem;color:var(--text-muted);line-height:1.6}
 
 #projects{position:relative;overflow:hidden;background:var(--bg-2)}
-.gallery-intro{padding:56px 0 32px;border-bottom:1px solid var(--border)}
+.gallery-intro{padding:40px 0px 32px;border-bottom:1px solid var(--border)}
 .gallery-intro-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}
 .gallery-controls{display:flex;align-items:center;gap:10px}
 .gallery-nav-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:all 0.25s var(--ease-spring);background:transparent;cursor:pointer}
 .gallery-nav-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
 .gallery-nav-btn:active{transform:scale(0.94)}
 .gallery-nav-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.gallery-scroll-track{display:flex;gap:24px;padding:44px 56px 56px 40px;overflow-x:auto;scroll-snap-type:x proximity;scroll-behavior:smooth;cursor:grab;-webkit-user-select:none;user-select:none}
+.gallery-scroll-track{display:flex;gap:24px;padding:44px 10px 56px 50px;;overflow-x:auto;scroll-snap-type:x proximity;scroll-behavior:smooth;cursor:grab;-webkit-user-select:none;user-select:none}
 .gallery-scroll-track::-webkit-scrollbar{display:none}
 .gallery-scroll-track:active{cursor:grabbing}
 @media(max-width:768px){.gallery-scroll-track{padding:28px 20px 44px}}
