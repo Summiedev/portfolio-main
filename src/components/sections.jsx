@@ -220,28 +220,6 @@ function ProjectCard({ projectKey, project, onClick }) {
   }
   const onMouseLeave = () => { if (cardRef.current) cardRef.current.style.transform = '' }
 
-  const statusMap = {
-    verdikt: { cls: 'status-beta', label: 'Beta' },
-    dilamme: { cls: 'status-live', label: 'Live' },
-    procurement: { cls: 'status-live', label: 'Live' },
-    feasibility: { cls: 'status-archived', label: 'Consulting' },
-    portfolio: { cls: 'status-live', label: 'Live' },
-  }
-  const eyebrows = {
-    verdikt: 'Social · Real-time',
-    dilamme: 'Infrastructure · Internship build',
-    procurement: 'Freelance · Automation',
-    feasibility: 'Consulting · Strategy',
-    portfolio: 'Mentorship',
-  }
-  const explores = {
-    verdikt: 'Read the case study →',
-    dilamme: 'Read the case study →',
-    procurement: 'Read the case study →',
-    feasibility: 'Read the case study →',
-    portfolio: 'View details →',
-  }
-
   return (
     <div className="project-card" ref={cardRef} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} onClick={() => onClick(projectKey)}>
       <div className={`project-cover ${project.gradient}`}>
@@ -251,17 +229,17 @@ function ProjectCard({ projectKey, project, onClick }) {
           <Icon />
         )}
         <div className="project-cover-overlay" />
-        <span className={`project-status ${statusMap[projectKey].cls}`}>{statusMap[projectKey].label}</span>
+        <span className={`project-status ${project.status?.cls ?? ''}`}>{project.status?.label}</span>
       </div>
       <div className="project-body">
-        <p className="project-eyebrow">{eyebrows[projectKey]}</p>
+        <p className="project-eyebrow">{project.eyebrow}</p>
         <h3 className="project-title">{project.title}</h3>
         <p className="project-summary">{project.summary}</p>
         <div className="project-tags">
           {project.tags.slice(0, 4).map(t => <span className="tag" key={t}>{t}</span>)}
         </div>
         <div className="project-footer">
-          <span className="project-explore">{explores[projectKey]}</span>
+          <span className="project-explore">{project.explore}</span>
           <div className="project-links">
             {project.github && (
               <a href={project.github} target="_blank" rel="noreferrer" className="project-link-btn"
@@ -689,3 +667,4 @@ export function ProjectModal({ projectKey, onClose }) {
     </div>
   )
 }
+
