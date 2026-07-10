@@ -9,7 +9,7 @@ export async function sendMessage({ firstName, lastName, email, subject, message
 
   if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
     // Fallback: open the user's mail client with prefilled body
-    const mailto = `mailto:noorah@email.com?subject=${encodeURIComponent(subject || 'Portfolio enquiry')}&body=${encodeURIComponent(
+    const mailto = `mailto:summie/77@gmail.com?subject=${encodeURIComponent(subject || 'Portfolio enquiry')}&body=${encodeURIComponent(
       `From: ${firstName} ${lastName} <${email}>\n\n${message}`
     )}`
     window.location.href = mailto

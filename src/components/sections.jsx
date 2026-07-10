@@ -584,7 +584,12 @@ export function Contact() {
             onClick={handleSubmit} disabled={status === 'sending'}>
             {status === 'sending' ? 'Sending...' : status === 'success' ? (<><Check /> Message sent!</>) : (<>Send message <ArrowRight /></>)}
           </button>
-          {feedback && <div className={`form-feedback ${status}`}>{feedback}</div>}
+          {feedback && (
+            <div className={`form-feedback ${status}`} role="status" aria-live="polite">
+              {status === 'success' && <Check />}
+              <span>{feedback}</span>
+            </div>
+          )}
         </div>
       </div>
     </section>
