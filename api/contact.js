@@ -1,10 +1,10 @@
-export default async function handler(req, res) {
+const FORMSPREE_ID = process.env.FORMSPREE_ID
+
+module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST')
     return res.status(405).json({ error: 'Method not allowed' })
   }
-
-  const FORMSPREE_ID = process.env.FORMSPREE_ID
 
   if (!FORMSPREE_ID) {
     return res.status(500).json({ error: 'Formspree is not configured on the server.' })
