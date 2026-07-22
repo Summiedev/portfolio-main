@@ -142,8 +142,8 @@ export function StatsBar() {
             <div className="stat-label">Years Building</div>
           </div>
           <div className="stat-item">
-            <div className="stat-number" data-count="12">0</div>
-            <div className="stat-label">Projects Shipped</div>
+              <div className="stat-number" data-count="15">0</div>
+              <div className="stat-label">Projects Shipped</div>
           </div>
           <div className="stat-item">
             <div className="stat-number" data-count="8">0</div>
@@ -329,27 +329,27 @@ export function Skills() {
     {
       icon: <svg className="icon" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>,
       title: 'Backend frameworks', delay: 2,
-      pills: ['Spring Boot', 'FastAPI', 'Node.js', 'Express', 'WebSockets'],
+      pills: ['Spring Boot', 'FastAPI', 'Node.js', 'Express', 'Socket.io', 'STOMP', 'Celery', 'SQLAlchemy', 'Passport.js', 'node-cron'],
     },
     {
       icon: <svg className="icon" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>,
       title: 'Databases', delay: 3,
-      pills: ['PostgreSQL', 'MongoDB', 'Redis', 'Supabase'],
+      pills: ['PostgreSQL', 'MongoDB', 'MongoDB Atlas', 'Mongoose', 'Redis', 'Supabase'],
     },
     {
       icon: <svg className="icon" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" /></svg>,
       title: 'Cloud & infra', delay: 4,
-      pills: ['Railway', 'Supabase', 'Nginx', 'DuckDNS', 'VPS'],
+      pills: ['Docker', 'Caddy', 'Nginx', 'Vercel', 'Railway', 'DigitalOcean', 'PM2', 'DuckDNS', 'VPS', 'Cloudinary'],
     },
     {
       icon: <svg className="icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>,
       title: 'Frontend', delay: 1,
-      pills: ['React', 'TypeScript', 'Vite', 'Zustand'],
+      pills: ['React', 'TypeScript', 'Vite', 'HTML/CSS', 'Tailwind CSS', 'Framer Motion', 'TanStack Query', 'Redux Toolkit', 'Leaflet', 'Recharts', 'Flutter'],
     },
     {
       icon: <svg className="icon" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0H5a2 2 0 0 1-2-2v-4m6 6h10a2 2 0 0 0 2-2v-4"/></svg>,
       title: 'Architecture', delay: 2,
-      pills: ['System design', 'Microservices', 'Event-driven', 'Queues'],
+      pills: ['System design', 'Microservices', 'Event-driven', 'OAuth 2.0', 'JWT', 'Serverless', 'WebSockets', 'Server-Sent Events', 'Queues'],
     },
   ]
   return (
@@ -535,9 +535,9 @@ export function Contact() {
         </div>
 
         <div className="contact-grid">
-          <a href="mailto:summie777@gmail.com" className="contact-card reveal reveal-delay-1">
+          <a href="mailto:partlysumayyah@gmail.com" className="contact-card reveal reveal-delay-1">
             <div className="contact-card-icon"><Mail /></div>
-            <div><div className="contact-card-title">Email</div><div className="contact-card-val">summie777@gmail.com</div></div>
+            <div><div className="contact-card-title">Email</div><div className="contact-card-val">partlysumayyah@gmail.com</div></div>
             <span className="contact-card-arrow"><ArrowRightSm /></span>
           </a>
           <a href="https://github.com/Summiedev" target="_blank" rel="noreferrer" className="contact-card reveal reveal-delay-2">

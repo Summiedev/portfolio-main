@@ -255,10 +255,10 @@ nav.scrolled{padding:14px 0;background:rgba(10,10,11,0.85);-webkit-backdrop-filt
 .submit-btn:hover:not(:disabled){opacity:0.85;transform:translateY(-1px);box-shadow:0 8px 24px rgba(124,106,245,0.35)}
 .submit-btn.sent{background:#22C55E}
 .submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none}
-.form-feedback{font-size:0.875rem;margin-top:14px;padding:14px 16px;border-radius:var(--r-md);display:flex;align-items:flex-start;gap:10px;line-height:1.5;text-align:left;border:1px solid transparent;box-shadow:0 10px 24px rgba(0,0,0,0.04)}
+.form-feedback{font-size:0.875rem;margin-top:14px;padding:14px 16px;border-radius:var(--r-md);display:flex;align-items:flex-start;gap:10px;line-height:1.5;text-align:left;border:1px solid transparent;border-left:3px solid transparent;box-shadow:0 10px 24px rgba(0,0,0,0.04)}
 .form-feedback svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:1px}
-.form-feedback.success{background:linear-gradient(135deg,rgba(34,197,94,0.16),rgba(16,185,129,0.1));color:#166534;border-color:rgba(34,197,94,0.24)}
-.form-feedback.error{background:rgba(239,68,68,0.12);color:#B91C1C;border-color:rgba(239,68,68,0.24)}
+.form-feedback.success{background:rgba(34,197,94,0.06);color:#166534;border-color:rgba(34,197,94,0.24);border-left-color:rgba(34,197,94,0.7);box-shadow:none}
+.form-feedback.error{background:rgba(239,68,68,0.06);color:#B91C1C;border-color:rgba(239,68,68,0.24);border-left-color:rgba(239,68,68,0.7);box-shadow:none}
 
 footer{background:var(--bg);border-top:1px solid var(--border);padding:36px 0}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}

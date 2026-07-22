@@ -55,6 +55,9 @@ export const projectIcons = {
   procurement: () => <svg className="project-cover-icon" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>,
   feasibility: () => <svg className="project-cover-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>,
   portfolio: () => <svg className="project-cover-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>,
+  insighta: () => <svg className="project-cover-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M7.5 11h.01M11 7.5h.01M11 11h.01M11 14.5h.01"/></svg>,
+  eventStore: () => <svg className="project-cover-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>,
+  recyclog: () => <svg className="project-cover-icon" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M5 6l1 14h12l1-14"/><path d="M10 11v6M14 11v6"/></svg>,
 }
 
 export function useReveal() {

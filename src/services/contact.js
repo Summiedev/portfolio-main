@@ -1,22 +1,12 @@
-
-const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID // ← replace this
+const API_URL = '/api/contact'
+const FALLBACK_MAILTO = 'mailto:summie777@gmail.com'
 
 export async function sendMessage({ firstName, lastName, email, subject, message }) {
-  // Validate before sending
   if (!firstName.trim()) throw new Error('First name is required.')
   if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('A valid email address is required.')
   if (!message.trim()) throw new Error('Message cannot be empty.')
 
-  if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
-    // Fallback: open the user's mail client with prefilled body
-    const mailto = `mailto:summie/77@gmail.com?subject=${encodeURIComponent(subject || 'Portfolio enquiry')}&body=${encodeURIComponent(
-      `From: ${firstName} ${lastName} <${email}>\n\n${message}`
-    )}`
-    window.location.href = mailto
-    return { ok: true, via: 'mailto' }
-  }
-
-  const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+  const res = await fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({
@@ -27,6 +17,14 @@ export async function sendMessage({ firstName, lastName, email, subject, message
       message,
     }),
   })
+
+  if (res.status === 500) {
+    const mailto = `${FALLBACK_MAILTO}?subject=${encodeURIComponent(subject || 'Portfolio enquiry')}&body=${encodeURIComponent(
+      `From: ${firstName} ${lastName} <${email}>\n\n${message}`
+    )}`
+    window.location.href = mailto
+    return { ok: true, via: 'mailto' }
+  }
 
   if (!res.ok) {
     const data = await res.json().catch(() => ({}))
