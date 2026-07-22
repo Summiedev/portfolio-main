@@ -507,8 +507,17 @@ export function Contact() {
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', subject: '', message: '' })
   const [status, setStatus] = useState(null)
   const [feedback, setFeedback] = useState('')
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }))
+
+  useEffect(() => {
+    if (!showSuccess) return
+    document.body.style.overflow = 'hidden'
+    const onKey = e => { if (e.key === 'Escape') setShowSuccess(false) }
+    document.addEventListener('keydown', onKey)
+    return () => { document.body.style.overflow = ''; document.removeEventListener('keydown', onKey) }
+  }, [showSuccess])
 
   const handleSubmit = async () => {
     setStatus('sending')
@@ -516,12 +525,18 @@ export function Contact() {
     try {
       await sendMessage(form)
       setStatus('success')
-      setFeedback('Message sent! I\'ll get back to you soon.')
+      setShowSuccess(true)
       setForm({ firstName: '', lastName: '', email: '', subject: '', message: '' })
     } catch (err) {
       setStatus('error')
       setFeedback(err.message || 'Something went wrong. Please try again.')
     }
+  }
+
+  const closeSuccess = () => {
+    setShowSuccess(false)
+    setStatus(null)
+    setFeedback('')
   }
 
   return (
@@ -582,15 +597,25 @@ export function Contact() {
           </div>
           <button className={`submit-btn${status === 'success' ? ' sent' : ''}`}
             onClick={handleSubmit} disabled={status === 'sending'}>
-            {status === 'sending' ? 'Sending...' : status === 'success' ? (<><Check /> Message sent!</>) : (<>Send message <ArrowRight /></>)}
+            {status === 'sending' ? 'Sending...' : (<>Send message <ArrowRight /></>)}
           </button>
-          {feedback && (
-            <div className={`form-feedback ${status}`} role="status" aria-live="polite">
-              {status === 'success' && <Check />}
+          {feedback && status === 'error' && (
+            <div className="form-feedback error" role="alert">
               <span>{feedback}</span>
             </div>
           )}
         </div>
+
+        {showSuccess && (
+          <div className="modal-overlay open" onClick={closeSuccess}>
+            <div className="modal success-modal" onClick={e => e.stopPropagation()}>
+              <div className="success-modal-icon"><Check /></div>
+              <h3 className="success-modal-title">Message sent!</h3>
+              <p className="success-modal-body">Thanks for reaching out. I'll get back to you within 24 Hours.</p>
+              <button className="btn-primary success-modal-btn" onClick={closeSuccess}>Got it</button>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )

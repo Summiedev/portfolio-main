@@ -260,6 +260,13 @@ nav.scrolled{padding:14px 0;background:rgba(10,10,11,0.85);-webkit-backdrop-filt
 .form-feedback.success{background:rgba(34,197,94,0.06);color:#166534;border-color:rgba(34,197,94,0.24);border-left-color:rgba(34,197,94,0.7);box-shadow:none}
 .form-feedback.error{background:rgba(239,68,68,0.06);color:#B91C1C;border-color:rgba(239,68,68,0.24);border-left-color:rgba(239,68,68,0.7);box-shadow:none}
 
+.success-modal{max-width:420px;margin:auto;text-align:center;padding:48px 36px;animation:modalIn 0.35s var(--ease-spring)}
+.success-modal-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,rgba(34,197,94,0.2),rgba(16,185,129,0.15));border:1px solid rgba(34,197,94,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:#22C55E}
+.success-modal-icon svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.success-modal-title{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:8px;font-weight:600}
+.success-modal-body{font-size:0.875rem;color:var(--text-muted);line-height:1.6;margin-bottom:24px}
+.success-modal-btn{width:auto;padding:12px 28px;margin:0 auto;display:inline-flex}
+
 footer{background:var(--bg);border-top:1px solid var(--border);padding:36px 0}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
 .footer-copy{font-size:0.8125rem;color:var(--text-dim)}
