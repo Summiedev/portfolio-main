@@ -1,6 +1,5 @@
 export const projects = {
 memora: {
-  gradient: 'cover-gradient-1',
   coverImage: '/covers/memora-cover.png',
   title: 'Memora',
   status: { cls: 'status-live', label: 'Live' },
@@ -29,7 +28,6 @@ memora: {
   live: 'https://me-m-ora.onrender.com/',
 },
   mizan: {
-    gradient: 'cover-gradient-3',
     coverImage: '/covers/mizan-cover.png',
     title: 'Mizan',
     status: { cls: 'status-beta', label: 'Beta' },
@@ -58,7 +56,6 @@ memora: {
     live: '',
   },
   verdikt: {
-    gradient: 'cover-gradient-2',
     coverImage: '/covers/verdikt-cover.png',
     title: 'Verdikt',
     status: { cls: 'status-beta', label: 'Beta' },
@@ -81,37 +78,28 @@ memora: {
     github: 'https://github.com/Summiedev/verdikt', 
   live: 'https://verdikt.online',
   },
-  dilamme: {
-  gradient: 'cover-gradient-3',
-  coverImage: '/covers/dillema-cover.png',
-  title: 'Dilamme Scheduler',
+  floodline: {
+  coverImage: '/covers/floodline-cover.svg',
+  title: 'FloodLine',
   status: { cls: 'status-live', label: 'Live' },
-  eyebrow: 'Infrastructure \u00b7 Internship build',
+  eyebrow: 'Civic Technology \u00b7 Mobility',
   explore: 'Read the case study \u2192',
-  summary: 'A distributed background job scheduler built from scratch — custom priority-queue and timing-wheel engine, DAG dependency chains, retry/DLQ handling, and live status updates over Server-Sent Events.',
-  tags: ['Python', 'FastAPI', 'MongoDB', 'Redis', 'React', 'TanStack Query', 'Tailwind CSS', 'Server-Sent Events', 'PM2', 'Nginx'],
-  overview: 'Dilamme Scheduler is a production-style job orchestration system engineered around two custom-built data structures rather than an off-the-shelf queue library: a lazy-deletion indexed priority queue and a circular timing wheel. Jobs are submitted through a FastAPI REST API, persisted in MongoDB, and executed by a fully independent worker process that the API never imports or calls directly so the two processes coordinate exclusively through MongoDB state and Redis pub/sub, communicating architecture that mirrors real distributed-systems design rather than a toy scheduler. The system supports DAG-based job dependencies with cycle detection, exponential backoff with jitter, dead-letter queuing with alert thresholds, deterministic idempotent recurring jobs, and a starvation-prevention SLA that mathematically guarantees no job waits more than 30 minutes regardless of priority. All of it is observable live in a React dashboard that streams state transitions via Server-Sent Events with automatic reconnect and resync.',
+  summary: 'A hyperlocal flood-mobility assistant that combines community reports, official warnings, saved-place alerts, and route-risk information to help people make safer travel decisions.',
+  tags: ['NestJS', 'React', 'Prisma', 'PostGIS', 'TypeScript', 'Maps'],
+  overview: 'FloodLine combines community reports, official warnings, saved places, route-risk evaluation, and live navigation monitoring into one mobility tool for flooding conditions. It helps people decide whether a route is usable, which places are at risk, and what conditions are changing around them.',
   features: [
-    'Custom IndexedPriorityQueue (min-heap over a 3-field sort key: effective_priority → scheduled_at → created_at) with O(log n) in-place priority updates via lazy deletion where stale heap entries are skipped on pop rather than removed eagerly, with automatic full-heap rebuilds once dead entries exceed max(32, live_count)',
-    'Custom TimingWheel algorithm implemented is a 3,600-slot circular array (one slot per second, 1-hour horizon) that promotes due jobs to the heap in O(k) per tick instead of pushing every future job into the heap immediately',
-    'Starvation-prevention algorithm with a proven SLA: age-proportional priority boosting guarantees any job pending 30+ minutes is promoted to an effective_priority below 1.0, jumping ahead of every unaged high-priority job — boost formula and thresholds fully derived and documented',
-    'DAG-based job dependencies with compile-time cycle detection (DFS traversal on job creation, returns the exact cycle path in the 400 response) and terminal-state propagation that fails downstream jobs immediately if an upstream dependency fails or is cancelled',
-    'Defence-in-depth duplicate-execution protection: MongoDB atomic find_one_and_update claims (status transition IS the lock) layered with a Redis SET NX EX distributed lock, plus background TTL lock-extension for long-running jobs and heartbeat-based stuck-job recovery every 5 minutes',
-    'Exponential backoff with jitter across 3 retry attempts (1s → 5s → 25s, ±jitter) before a job is embedded with a dlq subdocument in-place thus no separate DLQ collection, so retries are a single atomic $unset/$set operation',
-    'DLQ threshold alerting (10 failed jobs) with a 1-hour cooldown to prevent alert storms',
-    'Idempotent recurring jobs using deterministic UUID v5 IDs derived from the parent job ID and next-run timestamp, so a worker crash mid-rollover cannot create duplicate recurring chains',
-    'Cooperative cancellation model for in-flight jobs (cancel_requested flag checked post-handler) — an explicit, documented tradeoff over unsafe coroutine termination, preserving external-system consistency',
-    'Real-time dashboard via Server-Sent Events: worker publishes state changes to a Redis job_events channel, FastAPI fans them out per-client through asyncio.Queue-backed SSE streams, and the frontend reconnects with exponential backoff and force-refetches all active TanStack Query caches on reconnect to guarantee zero missed updates',
-    'Five pluggable job handler types (send_email, webhook, log_processing, generate_report, upload_file) with per-type payload validation',
-    'Structured JSON logging (structlog) queryable through a dedicated /api/logs endpoint, filterable by job_id and event type',
-    'Built-in benchmark suite comparing the custom heap, the timing-wheel pipeline, and indexed vs. non-indexed MongoDB queries at 10k–50k document scale, with published P50/P95/stddev numbers',
+    'Hyperlocal flood reports from community members with location and severity context',
+    'Official-warning feeds and saved-place alerts for monitoring familiar routes',
+    'Route-risk evaluation that separates likely passable, uncertain, and avoid routes',
+    'Active-navigation monitoring for changing flood conditions while travelling',
+    'A map-first React interface with clear status and location cues',
+    'A NestJS backend with Prisma and PostGIS-backed spatial data',
   ],
-  arch: 'Two independent OS processes — a FastAPI/Uvicorn API and a standalone asyncio worker — run under PM2 and never import each other; all coordination happens through MongoDB (source of truth for job state, compound-indexed on status/effective_priority/scheduled_at/created_at) and Redis (pub/sub for live events, NX locks for execution safety). The worker loop ticks every 2 seconds: it advances the timing wheel to promote due jobs, polls MongoDB for anything scheduled but not yet in memory, runs the starvation check every 60s and stuck-job recovery every 5 minutes, then drains the in-memory heap — for each job running a DAG dependency check, an atomic MongoDB claim, a Redis lock acquisition, handler execution, and a success/retry/DLQ resolution path. State changes are published to Redis and bridged to browser clients over Server-Sent Events (dedicated Nginx location block with buffering disabled, since standard proxy buffering silently breaks SSE delivery). The React frontend uses TanStack Query for server-state caching and a custom SSE manager with reconnect-and-resync logic, giving the dashboard, jobs table, and DLQ view live updates with no polling. The whole stack — Nginx, FastAPI, worker, MongoDB, Redis and is deployed to a single VPS behind PM2 process management with a documented, git-cloneable deploy script.',
-  github: 'https://github.com/Summiedev/dillamme-scheduler',
-  live: 'https://dillema.duckdns.org',
+  arch: 'FloodLine is split into a React/Vite frontend and a NestJS API. Prisma models and migrations organize places, reports, warnings, and route data, while PostGIS supports spatial queries and location-aware matching. The interface prioritizes quick interpretation of flood risk rather than exposing raw geographic complexity.',
+  github: 'https://github.com/Summiedev/FloodLine',
+  live: ''
 },
   procurement: {
-    gradient: 'cover-gradient-4',
     title: 'Procurement Intelligence',
     status: { cls: 'status-live', label: 'Live' },
     eyebrow: 'Freelance \u00b7 Automation',
@@ -132,7 +120,6 @@ memora: {
     live: null,
   },
   insighta: {
-    gradient: 'cover-gradient-1',
     coverImage: '/covers/insighta-cover.png',
     title: 'Insighta Labs',
     status: { cls: 'status-beta', label: 'Beta' },
@@ -156,7 +143,6 @@ memora: {
     live: 'https://insighta-backend-mauve.vercel.app',
   },
   eventStore: {
-    gradient: 'cover-gradient-2',
     coverImage: '/covers/eventstore-cover.png',
     title: 'Append-Only Event Store',
     status: { cls: 'status-complete', label: 'Complete' },
@@ -178,7 +164,6 @@ memora: {
     live: '',
   },
   recyclog: {
-    gradient: 'cover-gradient-4',
     coverImage: '/covers/recycle-log-cover.png',
     title: 'RecycLog',
     status: { cls: 'status-beta', label: 'Beta' },
@@ -201,7 +186,6 @@ memora: {
     live: 'https://recycle-log.vercel.app/',
   },
   feasibility: {
-    gradient: 'cover-gradient-5',
     title: 'Software Feasibility Engine',
     status: { cls: 'status-archived', label: 'Consulting' },
     eyebrow: 'Consulting \u00b7 Strategy',
@@ -222,7 +206,6 @@ memora: {
     live: '#',
   },
   portfolio: {
-    gradient: 'cover-gradient-6',
     title: 'Portfolio Platform',
     status: { cls: 'status-live', label: 'Live' },
     eyebrow: 'Mentorship',

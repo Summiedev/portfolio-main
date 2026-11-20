@@ -1,6 +1,6 @@
 const FORMSPREE_ID = process.env.FORMSPREE_ID
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST')
     return res.status(405).json({ error: 'Method not allowed' })
@@ -11,24 +11,31 @@ module.exports = async (req, res) => {
   }
 
   const { firstName, lastName, email, subject, message } = req.body || {}
-
-  const formspreeRes = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({
-      firstName,
-      lastName,
-      email,
-      subject: subject || 'Portfolio enquiry',
-      message,
-    }),
-  })
-
-  const data = await formspreeRes.json().catch(() => ({}))
-
-  if (!formspreeRes.ok) {
-    return res.status(formspreeRes.status).json({ error: data?.error || 'Failed to send message.' })
+  if (!firstName?.trim() || !email?.trim() || !message?.trim()) {
+    return res.status(400).json({ error: 'Name, email, and message are required.' })
   }
 
-  return res.status(200).json({ ok: true })
+  try {
+    const formspreeRes = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        subject: subject || 'Portfolio enquiry',
+        message,
+      }),
+    })
+
+    const data = await formspreeRes.json().catch(() => ({}))
+
+    if (!formspreeRes.ok) {
+      return res.status(formspreeRes.status).json({ error: data?.error || 'Failed to send message.' })
+    }
+
+    return res.status(200).json({ ok: true })
+  } catch {
+    return res.status(502).json({ error: 'The message service is unavailable. Please use the email link.' })
+  }
 }
